@@ -1,5 +1,5 @@
 [package]
-name = "jsonnlptool"
+name = "jsonnlp"
 version = "0.2.0"
 authors = ["Damir Cavar <damir@semiring.com>"]
 edition = "2018"
@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = "^1.0"
+serde = { version = "^1.0", features = ["derive"] }
 serde_derive = "^1.0"
 serde_json = { version = "^1.0", default-features = false, features = ["alloc"] }
 restson = "^0.7"
@@ -16,5 +16,5 @@ tokio = { version = "1", features = ["full"] }
 configparser = "^2.0.0"
 
 [[bin]]
-name = "jsonnlptool"
+name = "jsonnlp"
 path = "main.rs"
