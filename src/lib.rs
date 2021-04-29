@@ -5,13 +5,14 @@
 /// Verion 0.0.1
 
 
-//use reqwest::header::{HeaderMap, CONTENT_TYPE};
 use serde_json::json;
 use serde_json;
 use serde;
 use serde::{Serialize, Deserialize};
-// use configparser::ini::Ini;
-use std::env;
+use std::error::Error;
+use std::fs::File;
+use std::io::BufReader;
+use std::path::Path;
 
 
 #[derive(Serialize, Deserialize)]
@@ -368,14 +369,19 @@ pub struct JSONNLP {
 	docs: Vec<Document>,
 }
 
-pub fn from_string() {
-
+pub fn from_string(json: &str) -> Result<JSONNLP, Box<Error>> {
+	let r = serde_json::from_str::<JSONNLP>(json).unwrap();
+	Ok(r)
 }
 
-pub fn from_file() {
-
+pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<Error>> {
+    let file = File::open(path)?;
+    let reader = BufReader::new(file);
+    let u = serde_json::from_reader(reader)?;
+	Ok(u)
 }
 
-pub fn get_json() {
-
+pub fn get_json(j: &JSONNLP) -> Result<String, Box<Error>> {
+	let r = serde_json::to_string(j).unwrap();
+	Ok(r)
 }
