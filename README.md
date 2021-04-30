@@ -1,17 +1,14 @@
-# Rust JSON-NLP
+# JSON-NLP
 
 (C) 2021 by [Semiring Inc.], [Damir Cavar]
 
-This is a [Rust] implementation of [JSON-NLP].
+This is a [Rust] implementation of [JSON-NLP], a data structure for Natural Language Processing and Semantic analysis of text or speech.
 
 
-Library version 0.0.1
-
----
 
 ## Introduction
 
-This repository provides the [Rust] library *jsonnlp* for reading and writing [JSON-NLP] Schema conform data. [JSON-NLP] encodes outputs from Natural Language Processing (NLP) pipelines, functioning as some form of a middleware.
+This repository provides the [Rust] library *jsonnlp* for reading and writing [JSON-NLP] Schema conform data. [JSON-NLP] encodes outputs from Natural Language Processing (NLP) pipelines, functioning as a middleware to common NLP pipelines and components.
 
 [JSON-NLP] wrappers for the output formats from various NLP pipelines are available:
 
@@ -32,19 +29,21 @@ Many other wrappers and modules likely exist or will be made available.
 - Go or Golang: [GoJSONNLP](https://github.com/SemiringInc/GoJSONNLP)
 
 
----
-
 ## Installation
 
+more soon...
 
-
----
 
 ## Visualization of JSON-NLP
 
 There is a visualizer for [JSON-NLP] available here: [https://semiringinc.github.io/JSON-NLP-Viz/](https://semiringinc.github.io/JSON-NLP-Viz/)
 
----
+
+## License
+
+Licensed under:
+
+    Apache License, Version 2.0, (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
 
 
 
