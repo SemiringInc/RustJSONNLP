@@ -1,11 +1,11 @@
 #![crate_name = "jsonnlp"]
 
-/// This is an example implementation of JSON-NLP tools.
-/// (C) 2021 by Damir Cavar <damir@semiring.com>
-/// Verion 0.0.1
+//! This is an example implementation of JSON-NLP tools.
+//! (C) 2021 by Damir Cavar <damir@semiring.com>
+//! Verion 0.0.1
 
 
-use serde_json::json;
+//use serde_json::json;
 use serde_json;
 use serde;
 use serde::{Serialize, Deserialize};
@@ -369,19 +369,19 @@ pub struct JSONNLP {
 	docs: Vec<Document>,
 }
 
-pub fn from_string(json: &str) -> Result<JSONNLP, Box<Error>> {
+pub fn from_string(json: &str) -> Result<JSONNLP, Box<dyn Error>> {
 	let r = serde_json::from_str::<JSONNLP>(json).unwrap();
 	Ok(r)
 }
 
-pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<Error>> {
+pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<dyn Error>> {
     let file = File::open(path)?;
     let reader = BufReader::new(file);
     let u = serde_json::from_reader(reader)?;
 	Ok(u)
 }
 
-pub fn get_json(j: &JSONNLP) -> Result<String, Box<Error>> {
+pub fn get_json(j: &JSONNLP) -> Result<String, Box<dyn Error>> {
 	let r = serde_json::to_string(j).unwrap();
 	Ok(r)
 }
