@@ -14,7 +14,8 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
 
-
+/// contains the metadata for the JSON-NLP and individual documents.
+/// The metadata is using Dublin Core (DC) terms.
 #[derive(Serialize, Deserialize)]
 pub struct Meta {
     #[serde(rename = "DC.conformsTo")]
@@ -52,6 +53,7 @@ pub struct Meta {
 	identifier:  String,
 }
 
+///  contains different morpho-syntactic, semantic, or orthographic token features.
 #[derive(Serialize, Deserialize)]
 pub struct TokenFeatures {
 	overt:          bool,
@@ -84,6 +86,7 @@ pub struct TokenFeatures {
 	spaceafter:     bool,
 }
 
+/// contains the token information.
 #[derive(Serialize, Deserialize)]
 pub struct Token {
 	id:                u64,
@@ -128,6 +131,7 @@ pub struct Token {
 	entity:            String,
 }
 
+/// contains sentence information.
 #[derive(Serialize, Deserialize)]
 pub struct Sentence {
 	id:             u64,
@@ -146,6 +150,7 @@ pub struct Sentence {
 	sentiment_prob: f64,
 }
 
+/// contains clause information, assuming that sentences contain one or more clauses.
 #[derive(Serialize, Deserialize)]
 pub struct Clause {
 	id:             u64,
@@ -176,6 +181,9 @@ pub struct Clause {
 	sentiment_prob: f64,
 }
 
+/// contains dependency information as part of dependency trees.
+/// A dependency is a tuple that contains a governor token ID, a dependent token ID, and a dependency label.
+/// In addition, each dependency can provide probability information about the confidence or another likelihood property.
 #[derive(Serialize, Deserialize)]
 pub struct Dependency {
 	lab:  String,
@@ -184,6 +192,9 @@ pub struct Dependency {
 	prob: f64,
 }
 
+/// This struct contains information about a dependency tree.
+/// A dependency tree is a set of dependency triples.
+/// In addition a tree provides the possibility to encode a probability score for the dependency tree.
 #[derive(Serialize, Deserialize)]
 pub struct DependencyTree {
     #[serde(rename = "sentenceId")]
@@ -194,12 +205,14 @@ pub struct DependencyTree {
 	prob:         f64,
 }
 
+/// This struct contains information about a representative phrase or token for coreference.
 #[derive(Serialize, Deserialize)]
 pub struct CoreferenceRepresentantive {
 	tokens: Vec<u64>,
 	head:   u64,
 }
 
+/// This struct contains information about a referent or anaphoric expression that refers to some referent.
 #[derive(Serialize, Deserialize)]
 pub struct CoreferenceReferents {
 	tokens: Vec<u64>,
@@ -207,6 +220,7 @@ pub struct CoreferenceReferents {
 	prob:   f64,
 }
 
+/// This struct contains information about a coreference relation between one referent and a list of refering expressions.
 #[derive(Serialize, Deserialize)]
 pub struct Coreference {
 	id:             u64,
@@ -214,6 +228,7 @@ pub struct Coreference {
 	referents:      Vec<CoreferenceReferents>,
 }
 
+/// This struct contains information about scope relations between tokens or phrases in a sentence.
 #[derive(Serialize, Deserialize)]
 pub struct Scope {
 	id:        u64,
@@ -222,6 +237,7 @@ pub struct Scope {
 	terminals: Vec<u64>,
 }
 
+/// This struct contains information about the constituent parse tree for a sentence.
 #[derive(Serialize, Deserialize)]
 pub struct ConstituentParse {
     #[serde(rename = "sentenceId")]
@@ -236,6 +252,7 @@ pub struct ConstituentParse {
 	scopes:             Vec<Scope>,
 }
 
+/// This struct provides information about expressions or chunks in the text.
 #[derive(Serialize, Deserialize)]
 pub struct Expression {
 	id:         u64,
@@ -253,6 +270,7 @@ pub struct Expression {
 	prob:       f64,
 }
 
+/// This struct contains information about paragraph properties in the text.
 #[derive(Serialize, Deserialize)]
 pub struct Paragraph {
 	id:         u64,
@@ -264,12 +282,14 @@ pub struct Paragraph {
 	sentences:  Vec<u64>,
 }
 
+/// This struct encodes generic attribute value tuples for Attribute Value Matrix (AVM) based encoding of properties.
 #[derive(Serialize, Deserialize)]
 pub struct Attribute {
 	lab: String,
 	val: String,
 }
 
+/// This struct encodes entity properties.
 #[derive(Serialize, Deserialize)]
 pub struct Entity {
 	id:             u64,
@@ -296,6 +316,7 @@ pub struct Entity {
 	attributes:     Vec<Attribute>,
 }
 
+/// This struct encodes relations and properties in a graph for entity, cocept, or knowledge graphs.
 #[derive(Serialize, Deserialize)]
 pub struct Relation {
 	id:             u64,
@@ -320,6 +341,7 @@ pub struct Relation {
 	attributes:     Vec<Attribute>,
 }
 
+/// This struct encodes triples for RDF, JSON-LD, or general Knowledge Graph encoding.
 #[derive(Serialize, Deserialize)]
 pub struct Triple {
 	id:           u64,
@@ -344,6 +366,7 @@ pub struct Triple {
 	count:        u64,
 }
 
+/// This struct contains all the information for one particular document.
 #[derive(Serialize, Deserialize)]
 pub struct Document {
 	meta:             Meta,
@@ -363,17 +386,20 @@ pub struct Document {
 	triples:          Vec<Triple>,
 }
 
+/// This struct contains general elements of a JSON-NLP document.
 #[derive(Serialize, Deserialize)]
 pub struct JSONNLP {
 	meta: Meta,
 	docs: Vec<Document>,
 }
 
+/// This function converts a string containing JSON-NLP, returning a JSONNLP struct.
 pub fn from_string(json: &str) -> Result<JSONNLP, Box<dyn Error>> {
 	let r = serde_json::from_str::<JSONNLP>(json).unwrap();
 	Ok(r)
 }
 
+/// This function reads a JSON-NLP document from a file and returns a JSONNLP struct.
 pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<dyn Error>> {
     let file = File::open(path)?;
     let reader = BufReader::new(file);
@@ -381,6 +407,7 @@ pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<dyn Error>> {
 	Ok(u)
 }
 
+/// This function returns a string representation of a JSONNLP struct/object.
 pub fn get_json(j: &JSONNLP) -> Result<String, Box<dyn Error>> {
 	let r = serde_json::to_string(j).unwrap();
 	Ok(r)
