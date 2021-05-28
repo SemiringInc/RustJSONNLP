@@ -1,6 +1,6 @@
 [package]
 name = "jsonnlp"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Damir Cavar <damir@semiring.com>"]
 edition = "2018"
 description = "an implementation of the JSON-NLP data structure"
@@ -11,6 +11,9 @@ license-file = "LICENSE.txt"
 keywords = ["nlp", "json", "ai"]
 categories = ["api-bindings", "data-structures"]
 publish = true
+exclude = [
+    "docs/*",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

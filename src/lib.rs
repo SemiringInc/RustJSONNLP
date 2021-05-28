@@ -2,7 +2,7 @@
 
 //! This is an example implementation of JSON-NLP tools.
 //! (C) 2021 by Damir Cavar <damir@semiring.com>
-//! Verion 0.0.1
+//! Verion 0.0.3
 
 
 //use serde_json::json;
