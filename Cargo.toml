@@ -1,9 +1,9 @@
 [package]
 name = "jsonnlp"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Damir Cavar <damir@semiring.com>"]
 edition = "2018"
-description = "A short description of my package"
+description = "an implementation of the JSON-NLP data structure"
 readme = "README.md"
 repository = "https://github.com/SemiringInc/RustJSONNLP"
 license = "Apache-2.0"
