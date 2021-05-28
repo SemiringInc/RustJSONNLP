@@ -24,7 +24,7 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
 
-/// contains the metadata for the JSON-NLP and individual documents.
+/// contains the metadata for the [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) and individual documents.
 /// The metadata is using Dublin Core (DC) terms.
 #[derive(Serialize, Deserialize)]
 pub struct Meta {
@@ -396,20 +396,20 @@ pub struct Document {
 	triples:          Vec<Triple>,
 }
 
-/// This struct contains general elements of a JSON-NLP document.
+/// This struct contains general elements of a [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) document.
 #[derive(Serialize, Deserialize)]
 pub struct JSONNLP {
 	meta: Meta,
 	docs: Vec<Document>,
 }
 
-/// This function converts a string containing JSON-NLP, returning a JSONNLP struct.
+/// This function converts a string containing [JSON-NLP](https://github.com/SemiringInc/JSON-NLP), returning a JSONNLP struct.
 pub fn from_string(json: &str) -> Result<JSONNLP, Box<dyn Error>> {
 	let r = serde_json::from_str::<JSONNLP>(json).unwrap();
 	Ok(r)
 }
 
-/// This function reads a JSON-NLP document from a file and returns a JSONNLP struct.
+/// This function reads a [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) document from a file and returns a JSONNLP struct.
 pub fn from_file<P: AsRef<Path>>(path: P) -> Result<JSONNLP, Box<dyn Error>> {
     let file = File::open(path)?;
     let reader = BufReader::new(file);
