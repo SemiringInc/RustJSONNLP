@@ -1,8 +1,18 @@
 #![crate_name = "jsonnlp"]
 
-//! This is an example implementation of JSON-NLP tools.
-//! (C) 2021 by Damir Cavar <damir@semiring.com>
-//! Verion 0.0.3
+
+//! This is an implementation of [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) in Rust.
+//! [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) provides the data structures for
+//! detailed Natural Language Processing (NLP) annotations of speech and text.
+//! 
+//! (C) 2021 by [Semiring Inc.](https://semiring.com/), [Damir Cavar](http://damir.cavar.me/) <damir@semiring.com>
+//! 
+//! Version 0.0.4
+//! 
+//! See for more details:
+//! 
+//! - [GitHub repo](https://github.com/SemiringInc/RustJSONNLP)
+//! 
 
 
 //use serde_json::json;
