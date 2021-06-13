@@ -4,9 +4,10 @@
 //! [JSON-NLP](https://github.com/SemiringInc/JSON-NLP) provides the data structures for
 //! detailed Natural Language Processing (NLP) annotations of speech and text.
 //!
-//! (C) 2021 by [Semiring Inc.](https://semiring.com/), [Damir Cavar](http://damir.cavar.me/) <damir@semiring.com>
+//! (C) 2021 by [Semiring Inc.](https://semiring.com/),
+//!     [Damir Cavar](http://damir.cavar.me/) <damir@semiring.com>
 //!
-//! Version 0.0.4
+//! Version 0.0.5
 //!
 //! See for more details:
 //!
